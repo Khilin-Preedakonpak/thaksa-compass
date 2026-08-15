@@ -1,109 +1,293 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ทักษาวันเกิด 8 ทิศ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090a0d">
+<title>ทักษาวันเกิด — 8 ทิศ</title>
 <style>
-*{box-sizing:border-box}
-:root{--bg:#0c0d12;--panel:#14161d;--panel2:#1a1c24;--gold:#d7b56d;--gold2:#f1d99b;--text:#f5f2ea;--muted:#aaa7a0;--line:#302e2a;--danger:#d98b82}
-body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:radial-gradient(circle at 50% -10%,#2b2417 0,#111218 38%,#090a0e 100%);color:var(--text);min-height:100vh}
-.wrap{max-width:1080px;margin:auto;padding:28px 16px 60px}
-.hero{text-align:center;padding:30px 10px 24px}.orn{color:var(--gold);letter-spacing:7px;font-size:13px;margin-bottom:12px}
-h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:.5px;font-size:clamp(32px,6vw,52px)}
-.sub{color:var(--muted);margin-top:10px;font-size:15px}
-.panel{background:linear-gradient(145deg,#171920,#111218);border:1px solid var(--line);border-radius:22px;padding:22px;margin:16px 0;box-shadow:0 18px 45px #00000035}
-label{font-weight:700;display:block;margin-bottom:8px;color:var(--gold2)}
-select{width:100%;max-width:430px;padding:14px 16px;border:1px solid #4a4438;border-radius:13px;font-size:16px;background:#0e1015;color:var(--text);outline:none}
-select:focus{border-color:var(--gold)}
-h2{font-family:Georgia,"Times New Roman",serif;font-weight:500;margin-top:0;color:var(--gold2)}
-.kali-box{margin:0 0 20px;padding:19px 20px;border-radius:18px;background:linear-gradient(135deg,#211b19,#171417);border:1px solid #60433d;position:relative;overflow:hidden}
-.kali-box:after{content:"";position:absolute;right:-30px;top:-40px;width:120px;height:120px;border:1px solid #76513f;border-radius:50%;opacity:.35}
-.kali-label{font-weight:800;color:#e6a49b;font-size:14px}.kali-main{font-size:25px;font-weight:800;color:#f0c0b8;margin:6px 0}.kali-desc{color:#b9aaa5}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.card{border:1px solid var(--line);border-radius:17px;padding:17px;background:linear-gradient(145deg,#191b22,#12141a);min-height:145px;cursor:pointer;transition:.2s;position:relative}
-.card:hover{transform:translateY(-3px);border-color:#76613d;box-shadow:0 10px 25px #0005}
-.dir{font-size:14px;color:var(--muted)}.role{font-size:22px;font-weight:800;margin:8px 0 5px;color:var(--gold2)}
-.meaning{color:#c4c0b8}.badge{display:inline-block;font-size:12px;padding:5px 9px;border-radius:99px;background:#28261f;color:var(--gold2);border:1px solid #443d2f}
-.warn{border-color:#60413d;background:linear-gradient(145deg,#1e191b,#151316)}.warn .role{color:#e6a49b}.warn .badge{background:#2b2020;color:#e6a49b;border-color:#553b38}
-.summary{line-height:1.8;color:#c7c4bd}.summary strong{color:var(--gold2)}
-.notice{background:#211d15;border:1px solid #5a4b32;padding:12px 14px;border-radius:12px;color:#d8c39a;margin-top:12px}
-.empty-state{text-align:center;padding:48px 20px 52px;color:var(--muted);border:1px dashed #39362f;border-radius:18px;background:#101218}
-.empty-icon{font-size:30px;color:var(--gold);margin-bottom:10px}.empty-title{font-size:20px;color:var(--gold2);font-weight:700}.empty-text{font-size:14px;margin-top:6px}
-.modal{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;padding:18px;z-index:5}.modal.show{display:flex}
-.modalbox{max-width:520px;width:100%;background:#171920;border:1px solid #5b4b32;border-radius:22px;padding:25px;box-shadow:0 25px 70px #000b}
-.close{float:right;background:none;border:0;color:#aaa;font-size:25px;cursor:pointer}.modal-dir{color:var(--muted);font-size:14px}.modal-role{font:500 34px Georgia,serif;color:var(--gold2);margin:6px 0}.modal-text{color:#c9c5bc;line-height:1.8}
-@media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:430px){.grid{grid-template-columns:1fr}.panel{padding:17px}}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
+:root{--bg:#07080b;--panel:#111217;--panel2:#0c0d11;--line:#30291f;--gold:#c9a55b;--gold2:#f1dca7;--text:#f7f2e8;--muted:#a19c92;--danger:#a9655d;--soft:#17181d}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#211d15 0,#0b0c10 36%,var(--bg) 72%);color:var(--text);font-family:"Noto Sans Thai",sans-serif;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;background-image:linear-gradient(#ffffff05 1px,transparent 1px),linear-gradient(90deg,#ffffff05 1px,transparent 1px);background-size:48px 48px}
+.container{max-width:1040px;margin:auto;padding:0 18px 70px}.topbar{position:sticky;top:0;z-index:20;background:#08090ce8;backdrop-filter:blur(18px);border-bottom:1px solid #29251f}.topbar-inner{max-width:1040px;margin:auto;min-height:64px;padding:0 18px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;color:var(--gold2);font-weight:600;letter-spacing:.4px}.brand-mark{width:32px;height:32px;border:1px solid #6f5831;border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:14px}.top-link{font-size:12px;color:var(--muted)}.hero{text-align:center;padding:54px 0 42px}.eyebrow{letter-spacing:4px;font-size:11px;color:var(--gold);text-transform:uppercase}.hero h1{font-family:"Playfair Display","Noto Sans Thai",serif;font-size:clamp(38px,8vw,68px);font-weight:500;margin:10px 0 5px;letter-spacing:.5px}.hero p{color:var(--muted);margin:0;font-size:14px}
+.ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin:18px auto 0;color:var(--gold)}.ornament:before,.ornament:after{content:"";width:70px;height:1px;background:linear-gradient(90deg,transparent,var(--line))}.ornament:after{transform:rotate(180deg)}
+.panel{background:linear-gradient(145deg,#121319dd,#0d0e12dd);border:1px solid var(--line);border-radius:24px;padding:26px;margin:16px 0;box-shadow:0 20px 60px #0007}
+label{display:block;color:var(--gold2);font-size:13px;margin-bottom:10px}.select-wrap{position:relative}.select-wrap:after{content:"⌄";position:absolute;right:18px;top:50%;transform:translateY(-55%);color:var(--gold);pointer-events:none;font-size:18px}select{width:100%;appearance:none;background:#0b0c10;color:var(--text);border:1px solid #3b3327;border-radius:14px;padding:16px 46px 16px 16px;font:inherit;outline:none}select:focus{border-color:#8b7040;box-shadow:0 0 0 3px #c9a55b12}
+.empty-state{text-align:center;padding:48px 18px;color:var(--muted)}.empty-mark{font-family:serif;color:var(--gold);font-size:30px}.empty-state strong{display:block;color:var(--gold2);font-size:19px;margin:8px 0 5px}.empty-state span{font-size:13px}
+#results{display:none}.kali{position:relative;overflow:hidden;border:1px solid #604039;background:linear-gradient(135deg,#171116,#100e12);border-radius:22px;padding:25px;margin-bottom:22px}.kali:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--danger)}.kali .label{font-size:11px;letter-spacing:2px;color:#c98e85;text-transform:uppercase}.kali .dir{font-size:29px;color:var(--gold2);font-weight:600;margin:7px 0}.kali .meaning{color:var(--muted);font-size:14px}.kali .tag{display:inline-block;margin-top:13px;padding:5px 10px;border:1px solid #59423d;border-radius:999px;color:#cba69f;font-size:11px}
+.diagram-subtitle{color:var(--muted);font-size:12px;margin:-10px 0 12px;text-align:center}.section-title{font-family:"Playfair Display","Noto Sans Thai",serif;font-size:25px;font-weight:500;color:var(--gold2);margin:5px 0 18px}
+.compass-8{width:min(92vw,560px);aspect-ratio:1;margin:18px auto 54px;position:relative;filter:drop-shadow(0 22px 40px #000a);overflow:visible}
+.compass-8:before{content:"";position:absolute;inset:3%;border:1px solid #6a5532;border-radius:50%;background:radial-gradient(circle,#16140f00 0 55%,#c9a55b08 56%,transparent 57%);box-shadow:inset 0 0 0 8px #0b0c0f,inset 0 0 0 9px #403321}
+.compass-8:after{content:"";position:absolute;inset:11%;border:1px solid #342c21;border-radius:50%;background:repeating-conic-gradient(from -22.5deg,#c9a55b22 0deg 1deg,transparent 1deg 45deg)}
+.center{position:absolute;inset:35%;border:1px solid #8a6b39;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle,#292218,#0b0c10 73%);box-shadow:0 0 0 7px #0b0c0f,0 0 0 8px #4b3a24,0 0 40px #c9a55b18;z-index:2}.center small{display:block;color:var(--muted);font-size:10px;letter-spacing:1px}.center b{display:block;color:var(--gold2);font-size:18px;margin-top:4px}
+.node{position:absolute;transform:translate(-50%,-50%);width:126px;text-align:center;z-index:3}.node .arrow{display:flex;align-items:center;justify-content:center;margin:0 auto 7px;width:66px;height:66px;border-radius:50%;border:1px solid #846a3a;background:radial-gradient(circle at 38% 30%,#3a301f,#18150f 42%,#0d0e12 76%);color:var(--gold2);font-size:45px;font-weight:900;line-height:.8;text-shadow:0 3px 14px #c9a55b88;box-shadow:0 10px 26px #000a,0 0 0 5px #0b0c0f,0 0 0 6px #3b2f1e,0 0 22px #c9a55b16;transform:scale(1);transition:.2s}.node:hover .arrow{transform:scale(1.08);border-color:#b39152;box-shadow:0 12px 30px #000b,0 0 0 5px #0b0c0f,0 0 0 6px #6a5130,0 0 28px #c9a55b2b}.node b{display:block;color:var(--text);font-size:13px;font-weight:600;margin-top:2px;white-space:nowrap}.node span{display:inline-block;color:var(--gold);font-size:11px;margin-top:4px;padding:3px 8px;border:1px solid #403521;border-radius:999px;background:#0c0d10e8;white-space:nowrap}
+.n{left:50%;top:2%}.ne{left:85%;top:15%}.e{left:98%;top:50%}.se{left:85%;top:85%}.s{left:50%;top:98%}.sw{left:15%;top:85%}.w{left:2%;top:50%}.nw{left:15%;top:15%}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.card{border:1px solid #29261f;border-radius:17px;padding:18px;background:#0d0e12;transition:.2s}.card:hover{border-color:#64502f;transform:translateY(-2px)}.card .dir{color:var(--gold2);font-weight:600}.card .role{font-size:19px;margin:5px 0}.card .meaning{font-size:13px;color:var(--muted)}
+.summary{margin-top:22px;border-top:1px solid var(--line);padding-top:24px}.summary-box{background:#0c0d11;border:1px solid #29261f;border-radius:18px;padding:20px;color:#d7d2c8;line-height:1.8;font-size:14px}.summary-box strong{color:var(--gold2)}
+.note{margin-top:14px;text-align:center;color:#77746d;font-size:11px}
+footer{text-align:center;color:#65625b;font-size:11px;padding:25px 0 0}
 
-.compass-panel{text-align:center}.compass-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
-.compass{width:min(78vw,300px);height:min(78vw,300px);border-radius:50%;position:relative;border:1px solid #655331;background:radial-gradient(circle,#222019 0,#15161b 63%,#0b0c10 64%);box-shadow:inset 0 0 0 8px #101116,inset 0 0 35px #000,0 15px 40px #0008;transition:transform .15s ease-out}
-.compass-ring{position:absolute;inset:13px;border:1px solid #584a32;border-radius:50%;font-family:Georgia,serif;color:var(--gold2);font-weight:700}
-.compass-ring span{position:absolute;transform:translate(-50%,-50%)}.c-n{top:7%;left:50%;font-size:27px}.c-e{top:50%;left:93%;font-size:22px}.c-s{top:93%;left:50%;font-size:22px}.c-w{top:50%;left:7%;font-size:22px}
-.c-ne{top:20%;left:80%;color:#aaa}.c-se{top:80%;left:80%;color:#aaa}.c-sw{top:80%;left:20%;color:#aaa}.c-nw{top:20%;left:20%;color:#aaa}
-.needle{position:absolute;left:50%;top:17%;width:3px;height:33%;transform:translateX(-50%);background:linear-gradient(#c95e54 0 50%,#8d8d8d 50%);border-radius:4px}
-.center-dot{position:absolute;left:50%;top:50%;width:14px;height:14px;border-radius:50%;transform:translate(-50%,-50%);background:var(--gold);box-shadow:0 0 12px #d7b56d88}
-.heading-readout{font-size:28px;color:var(--gold2);font-weight:700}.heading-readout small{display:block;font-size:13px;color:var(--muted);font-weight:400;margin-top:2px}
-.compass-btn{border:1px solid #665332;background:#201d17;color:var(--gold2);padding:11px 22px;border-radius:12px;font-weight:700;cursor:pointer}.compass-btn:hover{background:#2a251b}
-.compass-status{font-size:12px;color:var(--muted);max-width:450px}
+.cookie-backdrop{position:fixed;inset:0;background:#0008;backdrop-filter:blur(3px);z-index:80}
+.cookie-banner{position:fixed;left:18px;right:18px;bottom:18px;z-index:90;max-width:1050px;margin:auto;background:linear-gradient(135deg,#17181d,#0e0f13);border:1px solid #4a3c26;border-radius:22px;box-shadow:0 25px 80px #000c;padding:20px;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center}
+.cookie-icon{width:44px;height:44px;border-radius:14px;border:1px solid #6a5330;display:grid;place-items:center;color:var(--gold);font-size:25px;background:#0b0c0f}.cookie-copy{min-width:0}.cookie-title{font-weight:700;color:var(--gold2);font-size:15px}.cookie-text{color:#aaa59b;font-size:12px;line-height:1.7;margin-top:5px;max-width:680px}.cookie-links button{background:none;border:0;padding:5px 0 0;color:var(--gold);font:inherit;font-size:11px;text-decoration:underline;cursor:pointer}.cookie-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.cookie-btn{border-radius:12px;padding:11px 14px;font:inherit;font-size:12px;cursor:pointer;transition:.2s}.cookie-btn.primary{background:linear-gradient(135deg,#d8b66d,#ad8848);color:#17130b;border:1px solid #e1c786;font-weight:700}.cookie-btn.secondary{background:#14151a;color:#e4dfd4;border:1px solid #4a4030}.cookie-btn.ghost{background:transparent;color:var(--gold2);border:1px solid #3f3526}.cookie-btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
+.cookie-modal{position:fixed;inset:0;z-index:100;background:#000b;display:grid;place-items:center;padding:20px}.cookie-modal-card{position:relative;width:min(100%,600px);max-height:90vh;overflow:auto;background:linear-gradient(145deg,#17181d,#0d0e12);border:1px solid #4a3c26;border-radius:24px;padding:28px;box-shadow:0 30px 100px #000e}.modal-close{position:absolute;right:16px;top:12px;border:0;background:none;color:#aaa;font-size:28px;cursor:pointer}.modal-eyebrow{color:var(--gold);letter-spacing:3px;font-size:10px}.cookie-modal h2{font-family:"Playfair Display","Noto Sans Thai",serif;color:var(--gold2);font-size:30px;font-weight:500;margin:8px 0}.modal-lead{color:var(--muted);font-size:13px;line-height:1.8}.cookie-option{margin:12px 0;padding:15px;border:1px solid #2f2b25;border-radius:15px;background:#0c0d11;display:flex;justify-content:space-between;gap:16px;align-items:center;cursor:pointer}.cookie-option b{display:block;color:#eee8dc;font-size:13px}.cookie-option span{display:block;color:#88847c;font-size:11px;margin-top:3px;line-height:1.5}.cookie-option strong{font-size:10px;color:var(--gold);white-space:nowrap}.cookie-option input{width:20px;height:20px;accent-color:#c9a55b}.modal-footer{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.legal-note{color:#6e6b65;font-size:10px;line-height:1.7;margin:16px 0 0}
+[hidden]{display:none!important}
+
+@media(max-width:700px){.cookie-banner{grid-template-columns:auto 1fr}.cookie-actions{grid-column:1/-1;justify-content:stretch}.cookie-actions .cookie-btn{flex:1}.cookie-text{max-width:none}}
+@media(max-width:600px){.node{width:100px}.node .arrow{width:56px;height:56px;font-size:38px}.node b{font-size:10px}.node span{font-size:9px;padding:2px 6px}.compass-8{width:96vw}.container{padding:24px 13px 45px}.panel{padding:20px;border-radius:20px}.grid{grid-template-columns:1fr}.compass-8{width:min(94vw,400px)}.node{width:88px}.node b{font-size:10px}.node span{font-size:9px}.hero{padding-top:14px}}
 </style>
+
+<style>
+/* Compass V5: large arrows, centered nodes, no clipping/overlap */
+.compass-8{width:min(92vw,560px);margin:24px auto 64px;overflow:visible}
+
+.compass-8 .node{
+  position:absolute;
+  width:108px;
+  text-align:center;
+  z-index:5;
+  transform:translate(-50%,-50%);
+}
+
+.compass-8 .node .arrow{
+  width:64px;
+  height:64px;
+  margin:0 auto 8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:43px;
+  line-height:1;
+}
+
+.compass-8 .node b{
+  display:block;
+  font-size:11px;
+  line-height:1.35;
+  margin:0;
+  white-space:nowrap;
+  text-shadow:0 2px 8px #000;
+}
+
+.compass-8 .node span{
+  display:inline-block;
+  margin-top:5px;
+  font-size:9px;
+  line-height:1.2;
+  padding:3px 7px;
+  white-space:nowrap;
+}
+
+/* Keep every node inside the compass while leaving room for labels. */
+.compass-8 .n{left:50%;top:6%}
+.compass-8 .ne{left:86%;top:15%}
+.compass-8 .e{left:94%;top:50%}
+.compass-8 .se{left:86%;top:85%}
+.compass-8 .s{left:50%;top:94%}
+.compass-8 .sw{left:14%;top:85%}
+.compass-8 .w{left:6%;top:50%}
+.compass-8 .nw{left:14%;top:15%}
+
+@media(max-width:600px){
+  .compass-8{width:94vw;margin-bottom:70px}
+  .compass-8 .node{width:102px}
+  .compass-8 .node .arrow{width:58px;height:58px;font-size:39px;margin-bottom:7px}
+  .compass-8 .node b{font-size:10px}
+  .compass-8 .node span{font-size:8.5px;padding:3px 6px}
+  .compass-8 .n{top:7%}
+  .compass-8 .s{top:93%}
+  .compass-8 .ne{left:84%;top:16%}
+  .compass-8 .se{left:84%;top:84%}
+  .compass-8 .sw{left:16%;top:84%}
+  .compass-8 .nw{left:16%;top:16%}
+  .compass-8 .e{left:93%;top:50%}
+  .compass-8 .w{left:7%;top:50%}
+}
+</style>
+
+<style>
+/* Premium detail layer */
+.detail-card{
+  position:relative;
+  margin:16px 0;
+  padding:22px;
+  border:1px solid rgba(198,157,71,.24);
+  border-radius:22px;
+  background:linear-gradient(145deg,rgba(20,18,20,.98),rgba(10,11,15,.98));
+  box-shadow:0 18px 50px rgba(0,0,0,.25);
+  overflow:hidden;
+}
+.detail-card h3{margin:0 0 7px;color:#f1d38c;font-size:20px}
+.detail-card p{margin:5px 0;color:#b9b2a8;line-height:1.65}
+.detail-card .free-summary{
+  padding:14px 16px;
+  margin-top:14px;
+  border-radius:15px;
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.06);
+}
+.premium-lock{
+  margin-top:14px;
+  padding:18px;
+  border-radius:18px;
+  border:1px solid rgba(211,169,79,.28);
+  background:linear-gradient(135deg,rgba(70,51,18,.28),rgba(20,16,10,.55));
+}
+.premium-lock .lock-title{
+  display:flex;align-items:center;gap:9px;
+  color:#f4d994;font-weight:700;font-size:17px;
+}
+.premium-lock .blur-preview{
+  margin:13px 0;
+  color:#d0cbc1;
+  line-height:1.7;
+  filter:blur(4px);
+  user-select:none;
+  opacity:.65;
+}
+.premium-btn{
+  width:100%;
+  border:0;
+  border-radius:14px;
+  padding:13px 16px;
+  font-weight:800;
+  font-size:15px;
+  color:#17130c;
+  background:linear-gradient(135deg,#f2d58e,#b98a35);
+  box-shadow:0 8px 25px rgba(190,145,54,.18);
+}
+.premium-btn:active{transform:scale(.99)}
+.premium-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-left:7px;padding:3px 8px;border-radius:99px;
+  font-size:10px;color:#e9ca83;
+  border:1px solid rgba(210,170,82,.28);
+  background:rgba(210,170,82,.08);
+}
+.premium-modal{
+  position:fixed;inset:0;z-index:9999;
+  display:none;align-items:flex-end;justify-content:center;
+  background:rgba(0,0,0,.72);backdrop-filter:blur(7px);
+}
+.premium-modal.show{display:flex}
+.premium-sheet{
+  width:min(620px,100%);
+  padding:25px 20px calc(24px + env(safe-area-inset-bottom));
+  border-radius:28px 28px 0 0;
+  border:1px solid rgba(220,180,90,.25);
+  background:linear-gradient(160deg,#17151a,#0a0b0f);
+  box-shadow:0 -20px 70px rgba(0,0,0,.45);
+}
+.premium-sheet .crown{font-size:27px}
+.premium-sheet h2{margin:7px 0;color:#f2d58e}
+.premium-sheet .sub{color:#aaa39a;line-height:1.6}
+.premium-benefits{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:18px 0}
+.premium-benefits div{
+  padding:11px;border-radius:13px;
+  background:rgba(255,255,255,.035);
+  color:#ddd6cb;font-size:13px;
+}
+.modal-actions{display:flex;gap:9px}
+.modal-actions button{flex:1}
+.close-premium{
+  background:transparent!important;
+  color:#aaa!important;
+  border:1px solid rgba(255,255,255,.1)!important;
+}
+@media(max-width:480px){
+ .premium-benefits{grid-template-columns:1fr}
+}
+</style>
+
 </head>
 <body>
-<div class="wrap">
-<section class="hero"><div class="orn">✦　✧　✦</div><h1>🔮 ทักษาวันเกิด 8 ทิศ</h1><div class="sub">เลือกวันเกิด แล้วดูความหมายของทั้ง 8 ทิศ พร้อมสรุปแบบเข้าใจง่าย</div></section>
+<div class="container">
+<div class="topbar"><div class="topbar-inner"><div class="brand"><span class="brand-mark">✦</span><span>ทักษาวันเกิด</span></div><div class="top-link">ศาสตร์แห่งทิศ • เรียบง่าย • เข้าใจง่าย</div></div></div>
+<header class="hero">
+<div class="eyebrow">THAKSA • DIRECTION &amp; DESTINY</div>
+<h1>ทักษาวันเกิด</h1>
+<p>ค้นหาพลังประจำวันเกิด ผ่าน 8 ทิศ พร้อมคำอธิบายที่เข้าใจง่าย</p>
+<div class="ornament">✦</div>
+</header>
 
-<section class="panel compass-panel">
-<h2>เข็มทิศ</h2>
-<div class="compass-wrap">
-  <div id="compass" class="compass">
-    <div class="compass-ring">
-      <span class="c-n">N</span><span class="c-e">E</span><span class="c-s">S</span><span class="c-w">W</span>
-      <span class="c-ne">↗</span><span class="c-se">↘</span><span class="c-sw">↙</span><span class="c-nw">↖</span>
-    </div>
-    <div class="needle"></div>
-    <div class="center-dot"></div>
-  </div>
-  <div class="heading-readout"><span id="heading">—</span>° <small id="headingText">กดเริ่มเข็มทิศ</small></div>
-  <button id="startCompass" class="compass-btn">เริ่มเข็มทิศ</button>
-  <div id="compassStatus" class="compass-status">หมุนโทรศัพท์เพื่อดูทิศแบบเรียลไทม์</div>
-</div>
-</section>
 <section class="panel">
-<label for="day">วันเกิด</label>
+<label id="dayLabel" for="day">วันเกิด</label>
+<div class="select-wrap">
 <select id="day">
 <option value="" selected>— เลือกวันเกิด —</option>
 <option>วันอาทิตย์</option><option>วันจันทร์</option><option>วันอังคาร</option>
 <option>วันพุธกลางวัน</option><option>วันพฤหัสบดี</option><option>วันศุกร์</option>
 <option>วันเสาร์</option><option>วันพุธกลางคืน</option>
 </select>
+</div>
+<div id="emptyState" class="empty-state"><div class="empty-mark">✦</div><strong>เลือกวันเกิดเพื่อเริ่มต้น</strong><span>ระบบจะแสดงกาลกิณี 8 ทิศ และคำสรุปของวันนั้น</span></div>
 </section>
 
+<div id="results">
 <section class="panel">
-<h2 id="title">ผลลัพธ์</h2>
-<div id="emptyState" class="empty-state">
-  <div class="empty-icon">✦</div>
-  <div class="empty-title">เลือกวันเกิดเพื่อดูผลลัพธ์</div>
-  <div class="empty-text">เมื่อเลือกวันแล้ว ระบบจะแสดงกาลกิณีทั้ง 8 ทิศ และคำสรุปให้ด้านล่าง</div>
-</div>
-<div id="results" style="display:none">
-  <div id="highlight"></div>
-  <div id="grid" class="grid"></div>
-  <div id="summary" class="summary"></div>
-</div>
+<div id="highlight"></div>
+<div class="section-title">แผนผัง 8 ทิศ</div><div class="diagram-subtitle">ทิศทั้ง 8 และพลังประจำทิศของวันเกิด</div>
+<div id="compass8" class="compass-8"></div>
+<div class="grid" id="grid"></div>
+<div class="summary" id="summary"></div>
 </section>
+<div class="note">ต้องการตรวจสอบทิศจริง แนะนำให้ใช้แอปเข็มทิศในโทรศัพท์ของคุณ แล้วเทียบกับแผนผังด้านบน</div>
 </div>
-<div id="modal" class="modal" onclick="if(event.target===this)closeModal()">
-<div class="modalbox"><button class="close" onclick="closeModal()">×</button><div id="modalDir" class="modal-dir"></div><div id="modalRole" class="modal-role"></div><div id="modalText" class="modal-text"></div></div>
+
+<div id="cookieBackdrop" class="cookie-backdrop" hidden></div>
+<section id="cookieBanner" class="cookie-banner" aria-label="การตั้งค่าคุกกี้" hidden>
+  <div class="cookie-icon">◌</div>
+  <div class="cookie-copy">
+    <div class="cookie-title">เราใช้คุกกี้เพื่อมอบประสบการณ์ที่ดีขึ้น</div>
+    <div class="cookie-text">เราใช้คุกกี้ที่จำเป็นต่อการทำงาน และอาจใช้คุกกี้เพื่อวิเคราะห์การใช้งานและปรับปรุงเว็บไซต์ คุณสามารถเลือกยอมรับ ปฏิเสธคุกกี้ที่ไม่จำเป็น หรือกำหนดการตั้งค่าได้</div>
+    <div class="cookie-links"><button type="button" id="openPrivacy">ดูนโยบายความเป็นส่วนตัวและคุกกี้</button></div>
+  </div>
+  <div class="cookie-actions">
+    <button class="cookie-btn secondary" id="rejectCookies">ปฏิเสธที่ไม่จำเป็น</button>
+    <button class="cookie-btn ghost" id="cookieSettings">ตั้งค่า</button>
+    <button class="cookie-btn primary" id="acceptCookies">ยอมรับทั้งหมด</button>
+  </div>
+</section>
+
+<div id="cookieModal" class="cookie-modal" hidden>
+  <div class="cookie-modal-card">
+    <button class="modal-close" id="closeCookieModal" aria-label="ปิด">×</button>
+    <div class="modal-eyebrow">PRIVACY &amp; COOKIES</div>
+    <h2>ความเป็นส่วนตัวของคุณ</h2>
+    <p class="modal-lead">เลือกได้ว่าต้องการอนุญาตคุกกี้ประเภทใด เราจะไม่เปิดใช้คุกกี้ที่ไม่จำเป็นจนกว่าคุณจะเลือก</p>
+    <div class="cookie-option locked">
+      <div><b>คุกกี้ที่จำเป็น</b><span>ใช้เพื่อให้เว็บไซต์ทำงานได้ตามปกติ</span></div><strong>จำเป็น</strong>
+    </div>
+    <label class="cookie-option">
+      <div><b>คุกกี้เพื่อการวิเคราะห์</b><span>ช่วยให้เราเข้าใจการใช้งานและปรับปรุงเว็บไซต์</span></div>
+      <input type="checkbox" id="analyticsCookie">
+    </label>
+    <label class="cookie-option">
+      <div><b>คุกกี้เพื่อการตลาด</b><span>ใช้สำหรับเนื้อหาและโฆษณาที่เกี่ยวข้อง หากมีการใช้งานในอนาคต</span></div>
+      <input type="checkbox" id="marketingCookie">
+    </label>
+    <div class="modal-footer">
+      <button class="cookie-btn secondary" id="saveCookieSettings">บันทึกการตั้งค่า</button>
+      <button class="cookie-btn primary" id="acceptAllModal">ยอมรับทั้งหมด</button>
+    </div>
+    <p class="legal-note">หมายเหตุ: หน้านี้เป็นส่วนติดต่อสำหรับการตั้งค่าคุกกี้ของเว็บไซต์ ควรจัดทำนโยบายความเป็นส่วนตัวและการขอความยินยอมให้สอดคล้องกับการใช้งานจริงของเว็บไซต์ก่อนเปิดให้บริการเชิงพาณิชย์</p>
+  </div>
 </div>
+<footer>ทักษาวันเกิด · เครื่องมือสำหรับศึกษาและทำความเข้าใจหลักทักษา · ความเป็นส่วนตัว · © 2026</footer>
+</div>
+
 <script>
-const dirs=[
-["↗","ตะวันออกเฉียงเหนือ"],["→","ตะวันออก"],["↘","ตะวันออกเฉียงใต้"],["↓","ใต้"],
-["↙","ตะวันตกเฉียงใต้"],["←","ตะวันตก"],["↖","ตะวันตกเฉียงเหนือ"],["↑","เหนือ"]
+const directions=[
+["↗","ตะวันออกเฉียงเหนือ","ne","บริวาร","คนช่วยเหลือ/คนรอบตัว"],
+["→","ตะวันออก","e","อายุ","สุขภาพ/ความเป็นอยู่"],
+["↘","ตะวันออกเฉียงใต้","se","เดช","อำนาจ/บารมี"],
+["↓","ใต้","s","ศรี","โชคลาภ/สิริมงคล"],
+["↙","ตะวันตกเฉียงใต้","sw","มูละ","ทรัพย์สิน/พื้นฐานชีวิต"],
+["←","ตะวันตก","w","อุตสาหะ","ความพยายาม/การงาน"],
+["↖","ตะวันตกเฉียงเหนือ","nw","มนตรี","ผู้ใหญ่/การสนับสนุน"],
+["↑","เหนือ","n","กาลกิณี","สิ่งที่ควรระวัง"]
 ];
-const meanings={
-"บริวาร":"คนช่วยเหลือ / คนรอบตัว","อายุ":"สุขภาพ / ความเป็นอยู่","เดช":"อำนาจ / บารมี",
-"ศรี":"โชคลาภ / สิริมงคล","มูละ":"ทรัพย์สิน / พื้นฐานชีวิต","อุตสาหะ":"ความพยายาม / การงาน",
-"มนตรี":"ผู้ใหญ่ / การสนับสนุน","กาลกิณี":"สิ่งที่ควรระวัง"
-};
 const data={
 "วันอาทิตย์":["บริวาร","อายุ","เดช","ศรี","มูละ","อุตสาหะ","มนตรี","กาลกิณี"],
 "วันจันทร์":["กาลกิณี","บริวาร","อายุ","เดช","ศรี","มูละ","อุตสาหะ","มนตรี"],
@@ -116,114 +300,7 @@ const data={
 };
 function render(){
  const day=document.getElementById("day").value;
- const pickerLabel=document.querySelector('label[for="day"]');
- if(pickerLabel) pickerLabel.textContent=day ? "วันที่เลือก" : "วันเกิด";
- if(!day){
-   document.getElementById("emptyState").style.display="block";
-   document.getElementById("results").style.display="none";
-   document.getElementById("title").textContent="ผลลัพธ์";
-   return;
- }
- document.getElementById("emptyState").style.display="none";
- document.getElementById("results").style.display="block";
- const vals=data[day];
- const kali=vals.map((x,i)=>x==="กาลกิณี"?dirs[i]:null).filter(Boolean);
- document.getElementById("highlight").innerHTML = kali.length ? `
- <div class="kali-box">
-   <div class="kali-label">⚠️ กาลกิณีของ ${day}</div>
-   <div class="kali-main">${kali.map(k=>k[0]+" "+k[1]).join(" / ")}</div>
-   <div class="kali-desc"><b>กาลกิณี</b> — ${meanings["กาลกิณี"]}</div>
- </div>` : "";
- document.getElementById("title").textContent="ผลลัพธ์ — "+day;
- document.getElementById("grid").innerHTML=dirs.map((d,i)=>{
-   const role=vals[i]||"ไม่ระบุ", warn=role==="กาลกิณี";
-   return `<article class="card ${warn?'warn':''}" onclick="openModal('${d[0]} ${d[1]}','${role}','${meanings[role]||'ยังไม่มีคำแปล'}')"><div class="dir">${d[0]} ${d[1]}</div><div class="role">${role}</div><span class="badge">${meanings[role]||"ยังไม่มีคำแปล"}</span></article>`;
- }).join("");
- const warnings=vals.map((x,i)=>x==="กาลกิณี"?dirs[i][1]:"").filter(Boolean);
- const strengths=vals.filter(x=>x && x!=="กาลกิณี");
- document.getElementById("summary").innerHTML=
- `<h2>สรุปสำหรับคุณ</h2>
- <p><strong>จุดเด่น:</strong> ให้ความสำคัญกับ ${strengths.slice(0,3).map(x=>x+" ("+meanings[x]+")").join(" • ")} เป็นพิเศษ</p>
- <p><strong>สิ่งที่ควรระวัง:</strong> ${warnings.length?warnings.join(", ")+" — "+meanings["กาลกิณี"]:"ไม่มีข้อมูลกาลกิณี"}</p>
- <p><strong>คำแนะนำ:</strong> ใช้ความหมายของแต่ละตำแหน่งเป็นแนวทางประกอบการพิจารณา ไม่ควรใช้แทนการตัดสินใจเรื่องสำคัญในชีวิต</p>
-`;
-}
-function openModal(dir,role,text){
- document.getElementById("modalDir").textContent=dir;
- document.getElementById("modalRole").textContent=role;
- document.getElementById("modalText").textContent=text;
- document.getElementById("modal").classList.add("show");
-}
-function closeModal(){document.getElementById("modal").classList.remove("show")}
-
-const compassEl=document.getElementById("compass"), headingEl=document.getElementById("heading"), headingText=document.getElementById("headingText"), statusEl=document.getElementById("compassStatus"), startBtn=document.getElementById("startCompass");
-let compassStarted=false, lastHeading=null, smoothHeading=null;
-
-function directionName(deg){
- const names=["เหนือ","ตะวันออกเฉียงเหนือ","ตะวันออก","ตะวันออกเฉียงใต้","ใต้","ตะวันตกเฉียงใต้","ตะวันตก","ตะวันตกเฉียงเหนือ"];
- return names[Math.round(deg/45)%8];
-}
-function normalize(a){ return (a%360+360)%360; }
-function smooth(a){
- if(smoothHeading===null){smoothHeading=a;return a;}
- let diff=((a-smoothHeading+540)%360)-180;
- smoothHeading=normalize(smoothHeading+diff*0.28);
- return smoothHeading;
-}
-function handleOrientation(e){
- let h=null;
-
- // iPhone/iPad Safari supplies a calibrated magnetic heading directly.
- if(typeof e.webkitCompassHeading==="number" && isFinite(e.webkitCompassHeading)){
-   h=normalize(e.webkitCompassHeading);
- } else if(typeof e.alpha==="number" && isFinite(e.alpha)){
-   // For Android/Chromium, absolute device orientation uses alpha clockwise
-   // from north in the opposite sign convention.
-   h=normalize(360-e.alpha);
- }
-
- if(h===null) return;
- h=smooth(h);
- lastHeading=h;
- headingEl.textContent=Math.round(h);
- headingText.textContent=directionName(h);
- // The dial rotates opposite the phone's heading so N stays aligned with real north.
- compassEl.style.transform=`rotate(${-h}deg)`;
-}
-
-async function startCompass(){
- try{
-   if(!window.isSecureContext){
-     statusEl.textContent="ต้องเปิดเว็บผ่าน HTTPS เพื่อใช้เข็มทิศ";
-     return;
-   }
-   if(typeof DeviceOrientationEvent==="undefined"){
-     statusEl.textContent="อุปกรณ์นี้ไม่รองรับเซ็นเซอร์เข็มทิศจากเว็บ";
-     return;
-   }
-
-   if(typeof DeviceOrientationEvent.requestPermission==="function"){
-     const permission=await DeviceOrientationEvent.requestPermission();
-     if(permission!=="granted"){
-       statusEl.textContent="ไม่ได้รับอนุญาตให้ใช้เซ็นเซอร์เข็มทิศ";
-       return;
-     }
-   }
-
-   // Prefer absolute orientation when the browser provides it.
-   window.addEventListener("deviceorientationabsolute",handleOrientation,true);
-   window.addEventListener("deviceorientation",handleOrientation,true);
-
-   compassStarted=true;
-   startBtn.textContent="เข็มทิศกำลังทำงาน";
-   startBtn.disabled=true;
-   statusEl.textContent="หมุนโทรศัพท์ช้า ๆ เพื่อให้เซ็นเซอร์ปรับทิศให้แม่นขึ้น";
- }catch(err){
-   statusEl.textContent="ไม่สามารถเปิดเซ็นเซอร์เข็มทิศได้ กรุณาอนุญาตการเข้าถึงเซ็นเซอร์";
- }
-}
-startBtn.addEventListener("click",startCompass);
-document.getElementById("day").addEventListener("change",render); render();
-</script>
-</body>
-</html>
+ const empty=document.getElementById("emptyState"), results=document.getElementById("results");
+ if(!day){empty.style.display="block";results.style.display="none";document.getElementById("dayLabel").textContent="วันเกิด";return}
+ empty.style.display="none";results.style.display="block";document.getElementById("dayLabel").textContent="วันที่เลือก";
+ const v
