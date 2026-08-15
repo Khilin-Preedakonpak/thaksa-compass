@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ทักษาวันเกิด 8 ทิศ</title>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#0c0d12;--panel:#14161d;--panel2:#1a1c24;--gold:#d7b56d;--gold2:#f1d99b;--text:#f5f2ea;--muted:#aaa7a0;--line:#302e2a;--danger:#d98b82}
+body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:radial-gradient(circle at 50% -10%,#2b2417 0,#111218 38%,#090a0e 100%);color:var(--text);min-height:100vh}
+.wrap{max-width:1080px;margin:auto;padding:28px 16px 60px}
+.hero{text-align:center;padding:30px 10px 24px}.orn{color:var(--gold);letter-spacing:7px;font-size:13px;margin-bottom:12px}
+h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:.5px;font-size:clamp(32px,6vw,52px)}
+.sub{color:var(--muted);margin-top:10px;font-size:15px}
+.panel{background:linear-gradient(145deg,#171920,#111218);border:1px solid var(--line);border-radius:22px;padding:22px;margin:16px 0;box-shadow:0 18px 45px #00000035}
+label{font-weight:700;display:block;margin-bottom:8px;color:var(--gold2)}
+select{width:100%;max-width:430px;padding:14px 16px;border:1px solid #4a4438;border-radius:13px;font-size:16px;background:#0e1015;color:var(--text);outline:none}
+select:focus{border-color:var(--gold)}
+h2{font-family:Georgia,"Times New Roman",serif;font-weight:500;margin-top:0;color:var(--gold2)}
+.kali-box{margin:0 0 20px;padding:19px 20px;border-radius:18px;background:linear-gradient(135deg,#211b19,#171417);border:1px solid #60433d;position:relative;overflow:hidden}
+.kali-box:after{content:"";position:absolute;right:-30px;top:-40px;width:120px;height:120px;border:1px solid #76513f;border-radius:50%;opacity:.35}
+.kali-label{font-weight:800;color:#e6a49b;font-size:14px}.kali-main{font-size:25px;font-weight:800;color:#f0c0b8;margin:6px 0}.kali-desc{color:#b9aaa5}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.card{border:1px solid var(--line);border-radius:17px;padding:17px;background:linear-gradient(145deg,#191b22,#12141a);min-height:145px;cursor:pointer;transition:.2s;position:relative}
+.card:hover{transform:translateY(-3px);border-color:#76613d;box-shadow:0 10px 25px #0005}
+.dir{font-size:14px;color:var(--muted)}.role{font-size:22px;font-weight:800;margin:8px 0 5px;color:var(--gold2)}
+.meaning{color:#c4c0b8}.badge{display:inline-block;font-size:12px;padding:5px 9px;border-radius:99px;background:#28261f;color:var(--gold2);border:1px solid #443d2f}
+.warn{border-color:#60413d;background:linear-gradient(145deg,#1e191b,#151316)}.warn .role{color:#e6a49b}.warn .badge{background:#2b2020;color:#e6a49b;border-color:#553b38}
+.summary{line-height:1.8;color:#c7c4bd}.summary strong{color:var(--gold2)}
+.notice{background:#211d15;border:1px solid #5a4b32;padding:12px 14px;border-radius:12px;color:#d8c39a;margin-top:12px}
+.empty-state{text-align:center;padding:48px 20px 52px;color:var(--muted);border:1px dashed #39362f;border-radius:18px;background:#101218}
+.empty-icon{font-size:30px;color:var(--gold);margin-bottom:10px}.empty-title{font-size:20px;color:var(--gold2);font-weight:700}.empty-text{font-size:14px;margin-top:6px}
+.modal{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;padding:18px;z-index:5}.modal.show{display:flex}
+.modalbox{max-width:520px;width:100%;background:#171920;border:1px solid #5b4b32;border-radius:22px;padding:25px;box-shadow:0 25px 70px #000b}
+.close{float:right;background:none;border:0;color:#aaa;font-size:25px;cursor:pointer}.modal-dir{color:var(--muted);font-size:14px}.modal-role{font:500 34px Georgia,serif;color:var(--gold2);margin:6px 0}.modal-text{color:#c9c5bc;line-height:1.8}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:430px){.grid{grid-template-columns:1fr}.panel{padding:17px}}
+
+.compass-panel{text-align:center}.compass-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+.compass{width:min(78vw,300px);height:min(78vw,300px);border-radius:50%;position:relative;border:1px solid #655331;background:radial-gradient(circle,#222019 0,#15161b 63%,#0b0c10 64%);box-shadow:inset 0 0 0 8px #101116,inset 0 0 35px #000,0 15px 40px #0008;transition:transform .15s ease-out}
+.compass-ring{position:absolute;inset:13px;border:1px solid #584a32;border-radius:50%;font-family:Georgia,serif;color:var(--gold2);font-weight:700}
+.compass-ring span{position:absolute;transform:translate(-50%,-50%)}.c-n{top:7%;left:50%;font-size:27px}.c-e{top:50%;left:93%;font-size:22px}.c-s{top:93%;left:50%;font-size:22px}.c-w{top:50%;left:7%;font-size:22px}
+.c-ne{top:20%;left:80%;color:#aaa}.c-se{top:80%;left:80%;color:#aaa}.c-sw{top:80%;left:20%;color:#aaa}.c-nw{top:20%;left:20%;color:#aaa}
+.needle{position:absolute;left:50%;top:17%;width:3px;height:33%;transform:translateX(-50%);background:linear-gradient(#c95e54 0 50%,#8d8d8d 50%);border-radius:4px}
+.center-dot{position:absolute;left:50%;top:50%;width:14px;height:14px;border-radius:50%;transform:translate(-50%,-50%);background:var(--gold);box-shadow:0 0 12px #d7b56d88}
+.heading-readout{font-size:28px;color:var(--gold2);font-weight:700}.heading-readout small{display:block;font-size:13px;color:var(--muted);font-weight:400;margin-top:2px}
+.compass-btn{border:1px solid #665332;background:#201d17;color:var(--gold2);padding:11px 22px;border-radius:12px;font-weight:700;cursor:pointer}.compass-btn:hover{background:#2a251b}
+.compass-status{font-size:12px;color:var(--muted);max-width:450px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="hero"><div class="orn">✦　✧　✦</div><h1>🔮 ทักษาวันเกิด 8 ทิศ</h1><div class="sub">เลือกวันเกิด แล้วดูความหมายของทั้ง 8 ทิศ พร้อมสรุปแบบเข้าใจง่าย</div></section>
+
+<section class="panel compass-panel">
+<h2>เข็มทิศ</h2>
+<div class="compass-wrap">
+  <div id="compass" class="compass">
+    <div class="compass-ring">
+      <span class="c-n">N</span><span class="c-e">E</span><span class="c-s">S</span><span class="c-w">W</span>
+      <span class="c-ne">↗</span><span class="c-se">↘</span><span class="c-sw">↙</span><span class="c-nw">↖</span>
+    </div>
+    <div class="needle"></div>
+    <div class="center-dot"></div>
+  </div>
+  <div class="heading-readout"><span id="heading">—</span>° <small id="headingText">กดเริ่มเข็มทิศ</small></div>
+  <button id="startCompass" class="compass-btn">เริ่มเข็มทิศ</button>
+  <div id="compassStatus" class="compass-status">หมุนโทรศัพท์เพื่อดูทิศแบบเรียลไทม์</div>
+</div>
+</section>
+<section class="panel">
+<label for="day">วันเกิด</label>
+<select id="day">
+<option value="" selected>— เลือกวันเกิด —</option>
+<option>วันอาทิตย์</option><option>วันจันทร์</option><option>วันอังคาร</option>
+<option>วันพุธกลางวัน</option><option>วันพฤหัสบดี</option><option>วันศุกร์</option>
+<option>วันเสาร์</option><option>วันพุธกลางคืน</option>
+</select>
+</section>
+
+<section class="panel">
+<h2 id="title">ผลลัพธ์</h2>
+<div id="emptyState" class="empty-state">
+  <div class="empty-icon">✦</div>
+  <div class="empty-title">เลือกวันเกิดเพื่อดูผลลัพธ์</div>
+  <div class="empty-text">เมื่อเลือกวันแล้ว ระบบจะแสดงกาลกิณีทั้ง 8 ทิศ และคำสรุปให้ด้านล่าง</div>
+</div>
+<div id="results" style="display:none">
+  <div id="highlight"></div>
+  <div id="grid" class="grid"></div>
+  <div id="summary" class="summary"></div>
+</div>
+</section>
+</div>
+<div id="modal" class="modal" onclick="if(event.target===this)closeModal()">
+<div class="modalbox"><button class="close" onclick="closeModal()">×</button><div id="modalDir" class="modal-dir"></div><div id="modalRole" class="modal-role"></div><div id="modalText" class="modal-text"></div></div>
+</div>
+<script>
+const dirs=[
+["↗","ตะวันออกเฉียงเหนือ"],["→","ตะวันออก"],["↘","ตะวันออกเฉียงใต้"],["↓","ใต้"],
+["↙","ตะวันตกเฉียงใต้"],["←","ตะวันตก"],["↖","ตะวันตกเฉียงเหนือ"],["↑","เหนือ"]
+];
+const meanings={
+"บริวาร":"คนช่วยเหลือ / คนรอบตัว","อายุ":"สุขภาพ / ความเป็นอยู่","เดช":"อำนาจ / บารมี",
+"ศรี":"โชคลาภ / สิริมงคล","มูละ":"ทรัพย์สิน / พื้นฐานชีวิต","อุตสาหะ":"ความพยายาม / การงาน",
+"มนตรี":"ผู้ใหญ่ / การสนับสนุน","กาลกิณี":"สิ่งที่ควรระวัง"
+};
+const data={
+"วันอาทิตย์":["บริวาร","อายุ","เดช","ศรี","มูละ","อุตสาหะ","มนตรี","กาลกิณี"],
+"วันจันทร์":["กาลกิณี","บริวาร","อายุ","เดช","ศรี","มูละ","อุตสาหะ","มนตรี"],
+"วันอังคาร":["มนตรี","กาลกิณี","บริวาร","อายุ","เดช","ศรี","มูละ","อุตสาหะ"],
+"วันพุธกลางวัน":["อุตสาหะ","มนตรี","กาลกิณี","บริวาร","อายุ","เดช","ศรี","มูละ"],
+"วันพฤหัสบดี":["ศรี","มูละ","อุตสาหะ","มนตรี","กาลกิณี","บริวาร","อายุ","เดช"],
+"วันศุกร์":["เดช","ศรี","มูละ","อุตสาหะ","มนตรี","กาลกิณี","บริวาร","อายุ"],
+"วันเสาร์":["มูละ","อุตสาหะ","มนตรี","กาลกิณี","บริวาร","อายุ","เดช","ศรี"],
+"วันพุธกลางคืน":["เดช","ศรี","มูละ","อุตสาหะ","มนตรี","กาลกิณี","บริวาร","อายุ"]
+};
+function render(){
+ const day=document.getElementById("day").value;
+ const pickerLabel=document.querySelector('label[for="day"]');
+ if(pickerLabel) pickerLabel.textContent=day ? "วันที่เลือก" : "วันเกิด";
+ if(!day){
+   document.getElementById("emptyState").style.display="block";
+   document.getElementById("results").style.display="none";
+   document.getElementById("title").textContent="ผลลัพธ์";
+   return;
+ }
+ document.getElementById("emptyState").style.display="none";
+ document.getElementById("results").style.display="block";
+ const vals=data[day];
+ const kali=vals.map((x,i)=>x==="กาลกิณี"?dirs[i]:null).filter(Boolean);
+ document.getElementById("highlight").innerHTML = kali.length ? `
+ <div class="kali-box">
+   <div class="kali-label">⚠️ กาลกิณีของ ${day}</div>
+   <div class="kali-main">${kali.map(k=>k[0]+" "+k[1]).join(" / ")}</div>
+   <div class="kali-desc"><b>กาลกิณี</b> — ${meanings["กาลกิณี"]}</div>
+ </div>` : "";
+ document.getElementById("title").textContent="ผลลัพธ์ — "+day;
+ document.getElementById("grid").innerHTML=dirs.map((d,i)=>{
+   const role=vals[i]||"ไม่ระบุ", warn=role==="กาลกิณี";
+   return `<article class="card ${warn?'warn':''}" onclick="openModal('${d[0]} ${d[1]}','${role}','${meanings[role]||'ยังไม่มีคำแปล'}')"><div class="dir">${d[0]} ${d[1]}</div><div class="role">${role}</div><span class="badge">${meanings[role]||"ยังไม่มีคำแปล"}</span></article>`;
+ }).join("");
+ const warnings=vals.map((x,i)=>x==="กาลกิณี"?dirs[i][1]:"").filter(Boolean);
+ const strengths=vals.filter(x=>x && x!=="กาลกิณี");
+ document.getElementById("summary").innerHTML=
+ `<h2>สรุปสำหรับคุณ</h2>
+ <p><strong>จุดเด่น:</strong> ให้ความสำคัญกับ ${strengths.slice(0,3).map(x=>x+" ("+meanings[x]+")").join(" • ")} เป็นพิเศษ</p>
+ <p><strong>สิ่งที่ควรระวัง:</strong> ${warnings.length?warnings.join(", ")+" — "+meanings["กาลกิณี"]:"ไม่มีข้อมูลกาลกิณี"}</p>
+ <p><strong>คำแนะนำ:</strong> ใช้ความหมายของแต่ละตำแหน่งเป็นแนวทางประกอบการพิจารณา ไม่ควรใช้แทนการตัดสินใจเรื่องสำคัญในชีวิต</p>
+ ${day==="วันพุธกลางคืน"?'<div class="notice">⚠️ ข้อมูลวันพุธกลางคืนที่ได้รับมีคำว่า “กาลกิณี” ซ้ำ 2 ตำแหน่ง และยังไม่มี “อายุ” ระบบจึงแสดงตามข้อมูลที่ให้มาโดยไม่แก้ไขเอง</div>':''}`;
+}
+function openModal(dir,role,text){
+ document.getElementById("modalDir").textContent=dir;
+ document.getElementById("modalRole").textContent=role;
+ document.getElementById("modalText").textContent=text;
+ document.getElementById("modal").classList.add("show");
+}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+
+const compassEl=document.getElementById("compass"), headingEl=document.getElementById("heading"), headingText=document.getElementById("headingText"), statusEl=document.getElementById("compassStatus"), startBtn=document.getElementById("startCompass");
+let compassStarted=false, lastHeading=null;
+function directionName(deg){
+ const names=["เหนือ","ตะวันออกเฉียงเหนือ","ตะวันออก","ตะวันออกเฉียงใต้","ใต้","ตะวันตกเฉียงใต้","ตะวันตก","ตะวันตกเฉียงเหนือ"];
+ return names[Math.round(deg/45)%8];
+}
+function handleOrientation(e){
+ let h=null;
+ if(typeof e.webkitCompassHeading==="number") h=e.webkitCompassHeading;
+ else if(typeof e.alpha==="number") h=(360-e.alpha)%360;
+ if(h==null) return;
+ // Correct the compass for screen rotation where available.
+ const angle=(screen.orientation&&typeof screen.orientation.angle==="number")?screen.orientation.angle:0;
+ if(!e.webkitCompassHeading) h=(h+angle)%360;
+ lastHeading=h;
+ headingEl.textContent=Math.round(h);
+ headingText.textContent=directionName(h);
+ compassEl.style.transform=`rotate(${-h}deg)`;
+}
+async function startCompass(){
+ try{
+   if(typeof DeviceOrientationEvent==="undefined"){
+     statusEl.textContent="อุปกรณ์นี้ไม่รองรับเข็มทิศจากเซ็นเซอร์";
+     return;
+   }
+   if(typeof DeviceOrientationEvent.requestPermission==="function"){
+     const permission=await DeviceOrientationEvent.requestPermission();
+     if(permission!=="granted"){statusEl.textContent="ไม่ได้รับอนุญาตให้ใช้เซ็นเซอร์เข็มทิศ";return;}
+   }
+   window.addEventListener("deviceorientation",handleOrientation,true);
+   compassStarted=true; startBtn.textContent="เข็มทิศกำลังทำงาน"; startBtn.disabled=true;
+   statusEl.textContent="หมุนโทรศัพท์ช้า ๆ เพื่อดูทิศแบบเรียลไทม์";
+ }catch(err){statusEl.textContent="ไม่สามารถเปิดเซ็นเซอร์เข็มทิศได้ กรุณาอนุญาตการเข้าถึงเซ็นเซอร์";}
+}
+startBtn.addEventListener("click",startCompass);
+document.getElementById("day").addEventListener("change",render); render();
+</script>
+</body>
+</html>
