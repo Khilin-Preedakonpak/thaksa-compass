@@ -146,7 +146,7 @@ function render(){
  <p><strong>จุดเด่น:</strong> ให้ความสำคัญกับ ${strengths.slice(0,3).map(x=>x+" ("+meanings[x]+")").join(" • ")} เป็นพิเศษ</p>
  <p><strong>สิ่งที่ควรระวัง:</strong> ${warnings.length?warnings.join(", ")+" — "+meanings["กาลกิณี"]:"ไม่มีข้อมูลกาลกิณี"}</p>
  <p><strong>คำแนะนำ:</strong> ใช้ความหมายของแต่ละตำแหน่งเป็นแนวทางประกอบการพิจารณา ไม่ควรใช้แทนการตัดสินใจเรื่องสำคัญในชีวิต</p>
- ${day==="วันพุธกลางคืน"?'<div class="notice">⚠️ ข้อมูลวันพุธกลางคืนที่ได้รับมีคำว่า “กาลกิณี” ซ้ำ 2 ตำแหน่ง และยังไม่มี “อายุ” ระบบจึงแสดงตามข้อมูลที่ให้มาโดยไม่แก้ไขเอง</div>':''}`;
+`;
 }
 function openModal(dir,role,text){
  document.getElementById("modalDir").textContent=dir;
@@ -157,38 +157,70 @@ function openModal(dir,role,text){
 function closeModal(){document.getElementById("modal").classList.remove("show")}
 
 const compassEl=document.getElementById("compass"), headingEl=document.getElementById("heading"), headingText=document.getElementById("headingText"), statusEl=document.getElementById("compassStatus"), startBtn=document.getElementById("startCompass");
-let compassStarted=false, lastHeading=null;
+let compassStarted=false, lastHeading=null, smoothHeading=null;
+
 function directionName(deg){
  const names=["เหนือ","ตะวันออกเฉียงเหนือ","ตะวันออก","ตะวันออกเฉียงใต้","ใต้","ตะวันตกเฉียงใต้","ตะวันตก","ตะวันตกเฉียงเหนือ"];
  return names[Math.round(deg/45)%8];
 }
+function normalize(a){ return (a%360+360)%360; }
+function smooth(a){
+ if(smoothHeading===null){smoothHeading=a;return a;}
+ let diff=((a-smoothHeading+540)%360)-180;
+ smoothHeading=normalize(smoothHeading+diff*0.28);
+ return smoothHeading;
+}
 function handleOrientation(e){
  let h=null;
- if(typeof e.webkitCompassHeading==="number") h=e.webkitCompassHeading;
- else if(typeof e.alpha==="number") h=(360-e.alpha)%360;
- if(h==null) return;
- // Correct the compass for screen rotation where available.
- const angle=(screen.orientation&&typeof screen.orientation.angle==="number")?screen.orientation.angle:0;
- if(!e.webkitCompassHeading) h=(h+angle)%360;
+
+ // iPhone/iPad Safari supplies a calibrated magnetic heading directly.
+ if(typeof e.webkitCompassHeading==="number" && isFinite(e.webkitCompassHeading)){
+   h=normalize(e.webkitCompassHeading);
+ } else if(typeof e.alpha==="number" && isFinite(e.alpha)){
+   // For Android/Chromium, absolute device orientation uses alpha clockwise
+   // from north in the opposite sign convention.
+   h=normalize(360-e.alpha);
+ }
+
+ if(h===null) return;
+ h=smooth(h);
  lastHeading=h;
  headingEl.textContent=Math.round(h);
  headingText.textContent=directionName(h);
+ // The dial rotates opposite the phone's heading so N stays aligned with real north.
  compassEl.style.transform=`rotate(${-h}deg)`;
 }
+
 async function startCompass(){
  try{
-   if(typeof DeviceOrientationEvent==="undefined"){
-     statusEl.textContent="อุปกรณ์นี้ไม่รองรับเข็มทิศจากเซ็นเซอร์";
+   if(!window.isSecureContext){
+     statusEl.textContent="ต้องเปิดเว็บผ่าน HTTPS เพื่อใช้เข็มทิศ";
      return;
    }
+   if(typeof DeviceOrientationEvent==="undefined"){
+     statusEl.textContent="อุปกรณ์นี้ไม่รองรับเซ็นเซอร์เข็มทิศจากเว็บ";
+     return;
+   }
+
    if(typeof DeviceOrientationEvent.requestPermission==="function"){
      const permission=await DeviceOrientationEvent.requestPermission();
-     if(permission!=="granted"){statusEl.textContent="ไม่ได้รับอนุญาตให้ใช้เซ็นเซอร์เข็มทิศ";return;}
+     if(permission!=="granted"){
+       statusEl.textContent="ไม่ได้รับอนุญาตให้ใช้เซ็นเซอร์เข็มทิศ";
+       return;
+     }
    }
+
+   // Prefer absolute orientation when the browser provides it.
+   window.addEventListener("deviceorientationabsolute",handleOrientation,true);
    window.addEventListener("deviceorientation",handleOrientation,true);
-   compassStarted=true; startBtn.textContent="เข็มทิศกำลังทำงาน"; startBtn.disabled=true;
-   statusEl.textContent="หมุนโทรศัพท์ช้า ๆ เพื่อดูทิศแบบเรียลไทม์";
- }catch(err){statusEl.textContent="ไม่สามารถเปิดเซ็นเซอร์เข็มทิศได้ กรุณาอนุญาตการเข้าถึงเซ็นเซอร์";}
+
+   compassStarted=true;
+   startBtn.textContent="เข็มทิศกำลังทำงาน";
+   startBtn.disabled=true;
+   statusEl.textContent="หมุนโทรศัพท์ช้า ๆ เพื่อให้เซ็นเซอร์ปรับทิศให้แม่นขึ้น";
+ }catch(err){
+   statusEl.textContent="ไม่สามารถเปิดเซ็นเซอร์เข็มทิศได้ กรุณาอนุญาตการเข้าถึงเซ็นเซอร์";
+ }
 }
 startBtn.addEventListener("click",startCompass);
 document.getElementById("day").addEventListener("change",render); render();
